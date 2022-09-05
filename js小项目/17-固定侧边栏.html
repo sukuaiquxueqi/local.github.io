@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      .header {
+        width: 80%;
+        height: 200px;
+        background-color: antiquewhite;
+        margin: 0 auto;
+      }
+      .banner {
+        width: 80%;
+        height: 400px;
+        background-color: green;
+        margin: 0 auto;
+      }
+      .body {
+        width: 80%;
+        height: 800px;
+        background-color: palevioletred;
+        margin: 0 auto;
+      }
+      .footer {
+        width: 80%;
+        height: 300px;
+        background-color: red;
+        margin: 0 auto;
+      }
+      .top {
+        width: 50px;
+        height: 100px;
+        background-color: tomato;
+        position: absolute;
+        right: 5%;
+        top: 300px;
+      }
+      a {
+        width: 50px;
+        height: 50px;
+        background-color: rebeccapurple;
+        color: white;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header"></div>
+    <div class="banner"></div>
+    <div class="body"></div>
+    <div class="footer"></div>
+    <div class="top">
+      <a href="#">返回顶部</a>
+    </div>
+    <script>
+      let banner = document.querySelector(".banner");
+      let t = document.querySelector(".top");
+      let body = document.querySelector(".body");
+      let a = document.querySelector("a");
+      //   页面被卷去的头部：可以通过window.pageYOffset 获得
+      //   如果是被卷去的左侧 window.pageXOffset
+      // 元素被卷去的头部是 element.scrollTop ,
+      //如果是页面被卷去的头部 则是 window.pageYOffs
+      
+      let t_top = t.offsetTop - banner.offsetTop;
+      document.addEventListener("scroll", function () {
+        if (window.pageYOffset >= banner.offsetTop) {
+          t.style.position = "fixed";
+          t.style.top = t_top + "px";
+        } else {
+          t.style.position = "absolute";
+          t.style.top = 300 + "px";
+        }
+        if (window.pageYOffset >= body.offsetTop) {
+          a.style.display = "block";
+        } else {
+          a.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .box {
+      margin: 100px auto;
+    }
+    ul {
+      margin-top: 30px;
+      line-height: 30px;
+    }
+
+    li {
+      width: 500px;
+      height: 30px;
+      background-color: palevioletred;
+      color: white;
+      margin-bottom: 10px;
+    }
+    span {
+      float: right;
+      margin-right: 15px;
+    }
+    a {
+      color: green;
+      float: right;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+  </style>
+  <body>
+    <div class="box">
+      <textarea cols="30" rows="5"></textarea>
+      <button>发布</button>
+      <ul></ul>
+    </div>
+
+    <script>
+      var btn = document.querySelector("button");
+      var text = document.querySelector("textarea");
+      var ul = document.querySelector("ul");
+      function time() {
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        var h = date.getHours();
+        var minutes = date.getMinutes();
+        var s = date.getSeconds();
+        var s = date.getSeconds();
+        var str =
+          y +
+          "年" +
+          m +
+          "月" +
+          d +
+          "日" +
+          "" +
+          h +
+          "时" +
+          minutes +
+          "分" +
+          s +
+          "秒";
+        return str;
+      }
+      btn.addEventListener("click", function () {
+        var li = document.createElement("li");
+        ul.insertBefore(li, ul.children[0]);
+        li.innerHTML =
+          text.value +
+          "<span>" +
+          time() +
+          "</span>" +
+          "<a href='Javascript:;'>删除</a>";
+        var a = document.querySelector("a");
+
+        a.addEventListener("click", function () {
+          ul.removeChild(this.parentNode);
+        });
+      });
+    </script>
+  </body>
+</html>

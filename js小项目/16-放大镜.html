@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .box {
+      width: 80%;
+      height: 400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 10%;
+      margin-top: 30px;
+    }
+    .box-min {
+      width: 40%;
+      height: 70%;
+      position: relative;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .mask {
+      width: 100px;
+      height: 100px;
+      background-color: olivedrab;
+      opacity: 0.5;
+      display: none;
+      position: absolute;
+      cursor: move;
+    }
+    .box-max {
+      background-color: rgb(26, 129, 95);
+      width: 50%;
+      height: 100%;
+      display: none;
+    }
+  </style>
+  <body>
+    <div class="box">
+      <div class="box-min">
+        <img src="./img/magnifying.jpg" class="min" />
+        <div class="mask"></div>
+      </div>
+      <div class="box-max">
+        <img src="./img/magnifying.jpg" class="max" />
+      </div>
+    </div>
+    <script>
+      let mask = document.querySelector(".mask");
+      let min = document.querySelector(".min");
+      let max = document.querySelector(".max");
+      let box_min = document.querySelector(".box-min");
+      let box_max = document.querySelector(".box-max");
+      box_min.addEventListener("mouseover", () => {
+        box_max.style.display = "block";
+        mask.style.display = "block";
+      });
+      box_min.addEventListener("mouseout", () => {
+        box_max.style.display = "none";
+        mask.style.display = "none";
+      });
+      box_min.addEventListener("mousemove", (e) => {
+        let x = e.pageX - box_min.offsetLeft;
+        let y = e.pageY - box_min.offsetTop;
+        mask.style.left = x - mask.offsetLeft / 2 + "px";
+        mask.style.top = y - mask.offsetTop / 2 + "px";
+        
+      });
+      
+
+    </script>
+  </body>
+</html>

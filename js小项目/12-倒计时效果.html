@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      span {
+        width: 150px;
+        height: 150px;
+        background-color: black;
+        color: aliceblue;
+        margin-right: 10px;
+        font-size: 50px;
+        text-align: center;
+        line-height: 150px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <span class="hour">1</span>
+    <span class="minute"></span>
+    <span class="second"></span>
+    <script>
+      //     获取date总毫秒数 距离1970年一月一日过了多少毫秒数
+      //     通过 valueOf() getTime()
+
+      //   例如：let date1 =new Date()
+      //   console.log(date1.valueOf())
+      //   console.log(date1.getTime())
+
+      //     简单写法(直接) : 1、var date = +new Date()
+      //               2、H5新增 Date.now()   console.log(Date.now())
+
+      //   转换公式 :
+      //           天 : d = parseInt(总秒数/60/60/24)
+      //           时 : h = parseInt(总秒数/60/60%24)
+      //           分 : m = parseInt(总秒数/60%60)
+      //           秒 : s = parseInt(总秒数%60)
+      let hour = document.querySelector(".hour");
+      let minute = document.querySelector(".minute");
+      let second = document.querySelector(".second");
+      let inputtime = +new Date("2022-9-1 19:00:00"); //输入时间的毫秒数
+      setInterval(gettime, 1000);
+
+      function gettime() {
+        let nowtime = +new Date(); //当前时间的毫秒数
+
+        let times = (inputtime - nowtime) / 1000; //剩余总的秒数
+
+        let h = parseInt((times / 60 / 60) % 24);
+        h = h < 10 ? "0" + h : h;
+
+        hour.innerHTML = h;
+
+        let m = parseInt((times / 60) % 60);
+        m = m < 10 ? "0" + m : m;
+        minute.innerHTML = m;
+        let s = parseInt(times % 60);
+        s = s < 10 ? "0" + s : s;
+        second.innerHTML = s;
+      }
+    </script>
+  </body>
+</html>

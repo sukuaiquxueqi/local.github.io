@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: palegreen;
+        position: absolute;
+      }
+      button {
+        margin-top: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <button class="btn_500">按钮500</button>
+    <button class="btn_800">按钮800</button>
+    <
+    <script>
+      let box = document.querySelector(".box");
+      let btn_500 = document.querySelector(".btn_500");
+      let btn_800 = document.querySelector(".btn_800");
+      //       实现步骤：
+      // 1. 获得盒子当前位置
+      // 2. 让盒子在当前位置加上1个移动距离
+      // 3. 利用定时器不断重复这个操作
+      // 4. 加一个结束定时器的条件
+      // 5. 注意此元素需要添加定位，才能使用element.style.left
+      function animate(obj, end, callback) {
+        console.log(callback);
+        clearInterval(obj.timer);
+
+        // 动画函数的简单封装：函数需要传递2个参数，动画对象和移动到的距离
+        obj.timer = setInterval(function () {
+          // 如果用var 每次调用函数 定时器都叫timer
+          //且每次都会开辟一个空间 ,所以把var 改成obj
+          let step = (end - obj.offsetLeft) / 10;
+          step > 0 ? Math.ceil(step) : Math.floor(step);
+          //大于0往大了取，小于0 往小了取
+          if (obj.offsetLeft == end) {
+            clearInterval(obj.timer);
+            //回调函数写到定时器结束里面
+            if (callback) {
+              callback();
+            }
+          }
+          obj.style.left = obj.offsetLeft + step + "px";
+          //   缓动动画--思路：
+          //   1. 让盒子每次移动的距离慢慢变小，速度就会慢慢落下来。
+          //   2. 核心算法： (目标值 - 现在的位置 ) / 10 做为每次移动的距离 步长
+          //   3. 停止的条件是： 让当前盒子位置等于目标位置就停止定时器 4. 注意步长值需要
+          // bug:用到了除法，就会出现小数的可能，所以要把 step 改成整数
+        }, 10);
+      }
+      //   bug:不断点击按钮 盒子会变得越来越快--点的越多开的定时器越多
+      //   解决办法：加一个清除定时器，先把之前的定时器清除，在执行下面的定时器
+
+      btn_500.addEventListener("click", function () {
+        animate(box, 500);
+      });
+      btn_800.addEventListener("click", function () {
+        animate(box, 800);
+      });
+    </script>
+  </body>
+</html>

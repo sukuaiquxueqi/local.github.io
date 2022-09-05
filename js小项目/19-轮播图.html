@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>轮播图</title>
+    <script src="./index.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .box {
+        width: 500px;
+        height: 400px;
+        position: relative;
+      }
+      .imglist {
+        width: 2500px;
+        height: 400px;
+        position: absolute;
+      }
+      li {
+        list-style: none;
+      }
+      .imglist img {
+        width: 500px;
+        height: 400px;
+        float: left;
+        z-index: -1;
+      }
+      .right {
+        width: 40px;
+        height: 50px;
+        background-color: paleturquoise;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        position: absolute;
+        line-height: 50px;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+      }
+      .left {
+        width: 40px;
+        height: 50px;
+        background-color: paleturquoise;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        position: absolute;
+        line-height: 50px;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+      }
+      .circle {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 15px;
+      }
+      .circle li {
+        width: 15px;
+        height: 15px;
+        background-color: white;
+        border-radius: 50%;
+        margin-right: 10px;
+        float: left;
+        border: none;
+        cursor: pointer;
+      }
+      .current {
+        background: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <ul class="imglist">
+        <li><img src="./img/mobile.jpg" /></li>
+        <li><img src="./img/carousel4.jpg" /></li>
+        <li><img src="./img/carousel5.jpg" /></li>
+        <li><img src="./img/cat3.jpg" /></li>
+        <li><img src="./img/magnifying.jpg" /></li>
+      </ul>
+      <ul class="circle">
+        <!-- <li></li> -->
+      </ul>
+      <div class="right">></div>
+      <div class="left"><</div>
+      <script>
+        let right = document.querySelector(".right");
+        let left = document.querySelector(".left");
+        let circle = document.querySelector(".circle");
+        let imglist = document.querySelector(".imglist");
+        let box = document.querySelector(".box");
+        //动态添加小圆点
+        for (let i = 0; i < imglist.children.length; i++) {
+          let li = document.createElement("li");
+          circle.appendChild(li);
+          li.setAttribute("index", i);
+          //小圆圈的排他思想
+          li.addEventListener("mouseover", function () {
+            for (let i = 0; i < circle.children.length; i++) {
+              circle.children[i].style.background = "white";
+            }
+            this.style.background = "pink";
+            let index = this.getAttribute("index");
+            animate(imglist, -box.offsetWidth * index);
+          });
+        }
+        // circle.children[0].className = "current";
+        circle.children[0].style.background = "pink";
+        let num = 0;
+        right.addEventListener("click", function () {
+          num++;
+          if (num == imglist.children.length) {
+            num = 0;
+          }
+          animate(imglist, -box.offsetWidth * num);
+        });
+      </script>
+    </div>
+  </body>
+</html>

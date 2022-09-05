@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            table{
+                margin: 100px auto;
+                width: 60%;
+                cursor: pointer;
+               text-align: center;
+                
+            }
+            .color{
+                background-color: paleturquoise;
+            }
+        </style>
+    </head>
+    <body>
+        <table border="1" cellpadding='10' cellspacing='0'>
+            <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>语文</td>
+                    <td>数学</td>
+                    <td>英语</td>
+                    <td>生物</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>小红</td>
+                    <td>70</td>
+                    <td>65</td>
+                    <td>77</td>
+                    <td>88</td>
+                </tr>
+                <tr>
+                    <td>小兰</td>
+                    <td>78</td>
+                    <td>57</td>
+                    <td>98</td>
+                    <td>95</td>
+                </tr>
+                <tr>
+                    <td>小强</td>
+                    <td>96</td>
+                    <td>94</td>
+                    <td>84</td>
+                    <td>74</td>
+                </tr>
+                <tr>
+                    <td>小李</td>
+                    <td>83</td>
+                    <td>83</td>
+                    <td>84</td>
+                    <td>99</td>
+                </tr>
+                <tr>
+                    <td>小绿</td>
+                    <td>90</td>
+                    <td>98</td>
+                    <td>79</td>
+                    <td>97</td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            var tbody =document.querySelector('tbody');
+            var tr =tbody.querySelectorAll('tr')
+            // 第一种方法
+            // for(var i=0;i<tr.length;i++){
+            // tr[i].addEventListener('mouseover',function(){
+            //     this.className='color';
+            // })
+            // tr[i].addEventListener('mouseout',function(){
+            //     this.className='';
+            // })
+            // }
+            
+            // 第二种--排他思想
+            for(var i=0;i<tr.length;i++){
+            tr[i].addEventListener('mouseover',function(){
+              for(var i=0;i<tr.length;i++){
+                  tr[i].className='';
+              }
+               this.className='color';
+            })
+          
+            }
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" type='text/css' href="font_3606318_6uyv8d00s0d/iconfont.css" />
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            .box {
+                width: 20%;
+                height: 25px;
+                position: relative;
+                margin: 100px auto;
+                border-bottom: 2px solid #999;
+
+
+
+            }
+
+            .search {
+                width: 100%;
+                height: 25px;
+                outline: none;
+                border: none;
+
+                text-indent: 1em;
+
+
+            }
+
+            .iconfont {
+
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 3%;
+                font-size: 20px;
+                cursor: pointer;
+
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="box">
+            <input type="text" class='search'>
+            <i class="iconfont">&#xe8bf;</i>
+
+        </div>
+        <script>
+            var i = document.querySelector('i');
+            var search = document.querySelector('.search');
+             var pag = 0;
+            i.onclick = () => {
+               
+                if (pag == 0) {
+                    i.innerHTML='&#xe8bf;'
+                   search.type='text';
+                   pag=1;
+                    
+                }else{
+                    search.type='password';
+                    i.innerHTML='&#xebcd;'
+                    pag=0;
+                    
+                }
+
+
+
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: Montserrat;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #e9d5ca;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .Select-menu {
+      width: 300px;
+      cursor: pointer;
+      position: relative;
+    }
+    .select {
+      background-color: #201e1e;
+      padding: 20px;
+      color: white;
+      border-radius: 10px;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .select-list {
+      position: absolute;
+      border-radius: 6px;
+      background-color: white;
+      width: 100%;
+      padding: 0 20px;
+      margin-top: 4px;
+      overflow-y: auto;
+
+      max-height: 180px;
+      display: none;
+    }
+    .option {
+      padding: 8px 0;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .option:hover,
+    .option .selected {
+      color: #00a8ff;
+    }
+    .select-list::-webkit-scrollbar {
+      width: 4px;
+      background-color: white;
+    }
+    .select-list::-webkit-scrollbar-thumb {
+      background-color: #00a8ff;
+    }
+  </style>
+  <body>
+    <div class="Select-menu">
+      <div class="select">
+        select Language
+        <i class="fa fa-angle-down"></i>
+      </div>
+      <div class="select-list">
+        <div class="option">Chinese</div>
+        <div class="option">English</div>
+        <div class="option">Hindi</div>
+        <div class="option">Spanish</div>
+        <div class="option">French</div>
+        <div class="option">Japanese</div>
+        <div class="option">Korean</div>
+      </div>
+    </div>
+    <script>
+      var select = document.querySelector(".select");
+      var list = document.querySelector(".select-list");
+      var options = document.querySelectorAll(".option");
+      var i = select.querySelector(".fa-angle-down");
+
+      select.addEventListener("click", function () {
+        list.style.display = "block";
+        i.classList.toggle("fa-angle-up");
+      });
+      options.forEach((o) => {
+        o.addEventListener("click", () => {
+          options.forEach((o) => {
+            o.classList.remove("selected");
+          });
+          select.innerHTML = o.innerHTML;
+          //   o.classList.add("selected");
+          list.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>

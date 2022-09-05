@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .mask {
+        background-color: rgb(197, 196, 196);
+        display: none;
+        width: 100%;
+        height: 100vh;
+        z-index: -1;
+        position: fixed;
+      }
+      h2 {
+        text-align: center;
+        cursor: pointer;
+      }
+      .box {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        background: white;
+        padding-bottom: 20px;
+        position: absolute;
+        display: none;
+      }
+      .box h4 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+        padding-top: 20px;
+        cursor: move;
+      }
+      .box-input {
+        width: 80%;
+        font-size: 20px;
+        text-align: right;
+        margin-bottom: 15px;
+        text-align: right;
+      }
+      input {
+        padding: 5px;
+        text-align: 1em;
+        outline: none;
+        width: 60%;
+      }
+      button {
+        margin: 20px auto;
+        display: block;
+        padding: 5px 25px;
+        background-color: white;
+        border-color: #999;
+      }
+      .close {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        right: -10px;
+        top: -10px;
+        border-radius: 30px;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mask"></div>
+    <h2>点击，弹出登录框</h2>
+    <div class="box">
+      <h4>登录会员</h4>
+      <div class="box-input">
+        用户名：<input type="text" placeholder="请输入用户名" />
+      </div>
+      <div class="box-input">
+        登陆密码：<input type="text" placeholder="请输入登录密码" />
+      </div>
+
+      <button>登录会员</button>
+      <div class="close">关闭</div>
+    </div>
+    <script>
+      let h2 = document.querySelector("h2");
+      let h4 = document.querySelector("h4");
+      let box = document.querySelector(".box");
+      let close = document.querySelector(".close");
+      let mask = document.querySelector(".mask");
+      h2.addEventListener("click", () => {
+        box.style.display = "block";
+        mask.style.display = "block";
+      });
+      close.addEventListener("click", () => {
+        box.style.display = "none";
+        mask.style.display = "none";
+      });
+      //   模态框
+      h4.addEventListener("mousedown", function (e) {
+        let x = e.pageX - box.offsetLeft;
+        let y = e.pageY - box.offsetTop;
+        function move(e) {
+          box.style.left = e.pageX - x + "px";
+          box.style.top = e.pageY - y + "px";
+        }
+        document.addEventListener("mousemove", move);
+        document.addEventListener("mouseup", function (e) {
+          document.removeEventListener("mousemove", move);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .search-box {
+        margin: 100px auto;
+      }
+
+      .content {
+        width: 200px;
+        height: 30px;
+        font-size: 20px;
+        background-color: pink;
+        color: white;
+        margin-bottom: 10px;
+        margin-left: 60px;
+        display: none;
+      }
+      input {
+        /* border: none; */
+        outline: none;
+        padding: 3px;
+        margin-left: 10px;
+
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search-box">
+      <div class="search-max">
+        <div class="content"></div>
+      </div>
+      快递单号:<input type="text" placeholder="请输入您的快递单号" />
+    </div>
+    <script>
+      let content = document.querySelector(".content");
+      let input = document.querySelector("input");
+    //   keyup或者input
+      input.addEventListener("keyup", function () {
+        if (input.value == 0) {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+          content.innerHTML = input.value;
+        }
+      });
+    </script>
+  </body>
+</html>

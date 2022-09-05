@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      table {
+        margin: 100px auto;
+        text-align: center;
+      }
+      thead {
+        font-weight: bold;
+      }
+      td {
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="1" cellpadding="20" cellspacing="0">
+      <thead>
+        <tr>
+          <td>姓名</td>
+          <td>科目</td>
+          <td>成绩</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      var data = [
+        {
+          name: "魏璎珞",
+          sumject: "javascript",
+          score: 100,
+        },
+        {
+          name: "宏利",
+          sumject: "javascript",
+          score: 90,
+        },
+        {
+          name: "傅恒",
+          sumject: "javascript",
+          score: 98,
+        },
+        {
+          name: "名誉",
+          sumject: "javascript",
+          score: 88,
+        },
+        {
+          name: "大猪蹄子",
+          sumject: "javascript",
+          score: 88,
+        },
+      ];
+      let tbody = document.querySelector("tbody");
+      for (let i = 0; i < data.length; i++) {
+        let tr = document.createElement("tr");
+        tbody.appendChild(tr);
+        for (k in data[i]) {
+          let td = document.createElement("td");
+          tr.appendChild(td);
+          td.innerHTML = data[i][k];
+        }
+        let w_td = document.createElement("td");
+        tr.appendChild(w_td);
+        w_td.innerHTML = "<a href='Javascript:;'>删除</a>";
+        let a = document.querySelectorAll("a");
+
+        a[i].onclick = function () {
+          tbody.removeChild(this.parentNode.parentNode);
+        };
+      }
+      //   for(k in obj){
+      //     k得到的是属性名
+      //   obj[k]得到的是属性值
+      //   }
+    </script>
+  </body>
+</html>
